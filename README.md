@@ -29,6 +29,53 @@ Kullanıcı, kelime bilgisi ile ilgili başarı yüzdesini görebilir.
 Rapor çıktısı alınabilir.
 
 
+
+## 🚀 Özellikler
+
+- 🧠 **6 Aşamalı Öğrenme Sistemi:** Her kelime, doğru cevaplandıkça adım adım ilerler.
+- 🔄 **Yanlışta Sıfırlama:** Yanlış cevaplanan kelime başa döner.
+- 🎯 **Rastgele Şıklar:** 1 doğru + 3 yanlış anlam karışık şekilde gösterilir.
+- 💡 **İpucu Gösterme:** Kelimenin örnek cümlesiyle ipucu sunar.
+- 📊 **Kullanıcı Takibi:** Kullanıcı bazlı kelime ilerlemesi kayıt altında tutulur.
+- 📁 **Form2 ile Detay Görüntüleme:** Kullanıcının öğrenme istatistiklerine veya ilerlemesine ait detaylar.
+
+## 🏗️ Uygulama Yapısı
+
+- `Form1`: Kelime sınavı arayüzü. Kullanıcıya soru sorar, şıkları sunar, sonucu gösterir.
+- `Form2`: Kullanıcının ilerleme bilgilerini gösteren ikincil formdur (varsayılan olarak `Form1` üzerinden açılır).
+- `WordModel`: Kelime verilerini taşıyan yardımcı model sınıfıdır.
+- `WordProgress` Tablosu: Kullanıcının hangi adımda olduğunu, ne zaman cevap verdiğini ve öğrenip öğrenmediğini izler.
+
+## 🧾 Veritabanı Yapısı
+
+### Words Tablosu
+
+| Alan Adı   | Açıklama         |
+|------------|------------------|
+| WordID     | Birincil anahtar |
+| English    | İngilizce kelime |
+| Turkish    | Türkçe karşılığı |
+| Sentence   | Örnek cümle      |
+
+### WordProgress Tablosu
+
+| Alan Adı        | Açıklama                          |
+|-----------------|-----------------------------------|
+| UserID          | Kullanıcı ID                     |
+| WordID          | Kelime ID                        |
+| Step1 - Step6   | Aşama doğruluk bilgileri         |
+| IsKnown         | Kelime tamamen öğrenildi mi?     |
+| LastAnsweredDate| Son cevap tarihi                 |
+
+## 🔧 Kurulum
+
+1. Visual Studio ile projeyi aç.
+2. SQL Server’da `veriYapi2` adında bir veritabanı oluştur ve `Words`, `WordProgress` tablolarını ekle.
+3. `App.config` ya da `Form1.cs` içinde bulunan bağlantı cümlesini kendi SQL Server bilgine göre güncelle:
+   ```csharp
+   string baglantiCumlesi = "Server=DESKTOP-XXXX\\SQLEXPRESS;Database=veriYapi2;Trusted_Connection=True;";
+
+
 🔄 Diğer Modüller
 🧩 Bulmaca Modülü
 🧩 Puzzle Modülü
